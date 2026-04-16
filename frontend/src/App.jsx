@@ -3,7 +3,9 @@ import SearchBar from "./components/SearchBar";
 import Filters from "./components/Filters";
 import ResultCard from "./components/ResultCard";
 
-const API_BASE = "";
+// In production this points to the Render backend URL (set via Vercel env var VITE_API_URL).
+// In local dev it is empty so the Vite proxy forwards requests to http://localhost:5001.
+const API_BASE = import.meta.env.VITE_API_URL || "";
 
 function SkeletonCard() {
   return (

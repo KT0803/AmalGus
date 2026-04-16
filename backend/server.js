@@ -6,7 +6,15 @@ const products = require("./data/products.json");
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    /\.vercel\.app$/,           // any *.vercel.app subdomain
+    process.env.FRONTEND_URL,   // optional: set in Render dashboard
+  ].filter(Boolean),
+  methods: ["GET", "POST"],
+}));
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
